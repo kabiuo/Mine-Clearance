@@ -2,7 +2,9 @@ package com.kabiuo;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.event.MouseListener;
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.util.Random;
 
 public class ThunderPanel extends JPanel implements MouseListener {
@@ -12,6 +14,10 @@ public class ThunderPanel extends JPanel implements MouseListener {
     public static String tmp;
     int thunderSign = -1;
     int lw = 0;
+    int s = -1;
+
+    Start ss;
+    JButton start = new JButton("开始");
 
     Container container = new Container();
     JButton border[][];
@@ -30,9 +36,23 @@ public class ThunderPanel extends JPanel implements MouseListener {
 
         this.setLayout(new BorderLayout());
         this.add(container, BorderLayout.CENTER);
-        addThunderButtons();
-        addThunder();
-        addCalculatuonThunderNumber();
+
+        /**********开始按钮**********/
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Timer.UseTime.setText("00：00：00");
+                start.setEnabled(false);
+                addThunderButtons();
+                addThunder();
+                addCalculatuonThunderNumber();
+                ss = new Start(Timer.UseTime);
+                ss.start();
+            }
+        });
+        this.add(start, BorderLayout.NORTH);
+
+
     }
 
     public void Judge() {
@@ -51,19 +71,34 @@ public class ThunderPanel extends JPanel implements MouseListener {
             this.col = 30;
             this.thunderNumber = 99;
         }
+
+
     }
 
     public void addThunderButtons() {
-        container.setLayout(new GridLayout(row, col));
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                JButton Thunders = new JButton();
-                //System.out.println(i + "," + j);
-                //Thunders.setEnabled(false);
-                Thunders.setOpaque(true);
-                Thunders.addMouseListener(this);
-                border[i][j] = Thunders;
-                container.add(Thunders);
+        if (-1 == s) {
+            container.setLayout(new GridLayout(row, col));
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    JButton Thunders = new JButton();
+                    Thunders.setOpaque(true);
+                    Thunders.setBackground(Color.yellow);
+                    Thunders.addMouseListener(this);
+                    border[i][j] = Thunders;
+                    container.add(Thunders);
+                }
+            }
+            s++;
+        } else {
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    border[i][j].setText("");
+                    border[i][j].setEnabled(true);
+                    border[i][j].addMouseListener(this);
+                    border[i][j].setBackground(Color.yellow);
+                    count[i][j] = 0;
+                    lw = 0;
+                }
             }
         }
     }
@@ -127,12 +162,16 @@ public class ThunderPanel extends JPanel implements MouseListener {
                 }
             }
         }
+        new Pause(ss).start();
+        start.setText("重新开始");
+        start.setEnabled(true);
         JOptionPane.showMessageDialog(null, "You Lose!");
     }
 
     public void openCell(int i, int j) {
         if (border[i][j].isEnabled() == false) return;
         border[i][j].setEnabled(false);
+        border[i][j].setBackground(Color.blue);
         if (0 == count[i][j]) {
             if (i > 0 && j > 0 && count[i - 1][j - 1] != thunderSign) openCell(i - 1, j - 1);
             if (i > 0 && count[i - 1][j] != thunderSign) openCell(i - 1, j);
@@ -144,6 +183,7 @@ public class ThunderPanel extends JPanel implements MouseListener {
             if (i < row - 1 && j < col - 1 && count[i + 1][j + 1] != thunderSign) openCell(i + 1, j + 1);
         } else {
             border[i][j].setText(count[i][j] + "");
+            border[i][j].setBackground(Color.blue);
         }
     }
 
@@ -154,7 +194,13 @@ public class ThunderPanel extends JPanel implements MouseListener {
             }
         }
 
+        new Pause(ss).start();
+        start.setText("重新开始");
+        start.setEnabled(true);
+
         JOptionPane.showMessageDialog(null, "You Win!");
+
+        lw += 1;
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -206,8 +252,10 @@ public class ThunderPanel extends JPanel implements MouseListener {
                             lw += 1;
                             loseGame();
                         } else {
-                            openCell(i, j);
-                            checkWin();
+                            if (0 == lw) {
+                                openCell(i, j);
+                                checkWin();
+                            }
                         }
                     }
                 }
