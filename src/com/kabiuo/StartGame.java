@@ -1,7 +1,5 @@
 package com.kabiuo;
 
-import javazoom.jl.decoder.JavaLayerException;
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
@@ -76,7 +74,7 @@ public class StartGame implements ActionListener {
         startJFrame.setLocationRelativeTo(null);
         startJFrame.add(new ThunderPanel(), BorderLayout.CENTER);
         startJFrame.setVisible(true);
-        new BackgroundGameMusic().play("E:/CloudMusic/Thomas Prime - Sky High.mp3");
+        new BackgroundGameMusic().play("https://raw.githubusercontent.com/kabiuo/Mine-Clearance/master/music/ThomasPrime-SkyHigh.mp3");
     }
 
     public void First(){
