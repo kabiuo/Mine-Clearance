@@ -3,8 +3,6 @@ package com.kabiuo;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 //import com.kabiuo.ThunderPanel;
 
@@ -74,7 +72,7 @@ public class StartGame implements ActionListener {
         startJFrame.setLocationRelativeTo(null);
         startJFrame.add(new ThunderPanel(), BorderLayout.CENTER);
         startJFrame.setVisible(true);
-        new BackgroundGameMusic().play("https://raw.githubusercontent.com/kabiuo/Mine-Clearance/master/music/ThomasPrime-SkyHigh.mp3");
+        new BackgroundGameMusic().play("./music/ThomasPrime-SkyHigh.mp3");
     }
 
     public void First(){
