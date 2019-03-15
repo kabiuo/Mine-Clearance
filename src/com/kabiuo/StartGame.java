@@ -1,8 +1,12 @@
 package com.kabiuo;
 
+import javazoom.jl.decoder.JavaLayerException;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 //import com.kabiuo.ThunderPanel;
 
@@ -72,6 +76,7 @@ public class StartGame implements ActionListener {
         startJFrame.setLocationRelativeTo(null);
         startJFrame.add(new ThunderPanel(), BorderLayout.CENTER);
         startJFrame.setVisible(true);
+        new BackgroundGameMusic().play("E:/CloudMusic/Thomas Prime - Sky High.mp3");
     }
 
     public void First(){

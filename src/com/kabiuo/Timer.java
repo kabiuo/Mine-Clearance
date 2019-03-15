@@ -10,7 +10,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.swing.*;
 
 public class Timer extends JPanel {
-    JButton start, pause, stop;
+    JButton start;
     static JLabel UseTime;
     static String Time = "00：00：00";
     Start ss;
@@ -37,34 +37,14 @@ public class Timer extends JPanel {
             }
         });
 
-//        /**********结束按钮**********/
-//        stop=new JButton("结束");
-//        stop.setBounds(350, 200, 100, 30);
-//        stop.setEnabled(false);
-//        stop.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                start.setEnabled(true);
-//                stop.setEnabled(false);
-//                pause.setEnabled(false);
-//                new Pause(ss).start();
-//                sec.setText("00");
-//                min.setText("00");
-//                hour.setText("00");
-//
-//            }
-//        });
-
         this.add(UseTime);
-//        this.add(start);
-//        this.repaint();
         this.setVisible(true);
 
     }
 
-    public static void main(String[] args) {
-        new Timer();
-    }
+//    public static void main(String[] args) {
+//        new Timer();
+//    }
 }
 
 class Start extends Thread {
