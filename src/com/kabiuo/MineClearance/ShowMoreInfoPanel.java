@@ -1,4 +1,6 @@
-package com.kabiuo;
+package com.kabiuo.MineClearance;
+
+import com.kabiuo.Util.Chronoscope.Timer;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;

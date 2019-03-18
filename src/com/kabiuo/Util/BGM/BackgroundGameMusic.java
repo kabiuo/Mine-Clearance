@@ -1,4 +1,4 @@
-package com.kabiuo;
+package com.kabiuo.Util.BGM;
 
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
