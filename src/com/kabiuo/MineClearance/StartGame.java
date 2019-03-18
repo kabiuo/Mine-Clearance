@@ -15,6 +15,8 @@ public class StartGame implements ActionListener {
     private int screenWidth=((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().width);
     private int screenHeight = ((int)java.awt.Toolkit.getDefaultToolkit().getScreenSize().height);
     static String path = "d:/Mine-Clearance/";
+    static JLabel first;
+    static JMenu gameMenu;
 
     StartGame() {
         startJFrame.setSize(600, 400);
@@ -28,7 +30,7 @@ public class StartGame implements ActionListener {
 
     public void CreatMenuBar() {
         JMenuBar gameMenuBar = new JMenuBar();
-        JMenu gameMenu = new JMenu("Option");
+        gameMenu = new JMenu("Option");
         JMenuItem gameItemSimple = new JMenuItem("Simple");
         JMenuItem gameItemEasy = new JMenuItem("Easy");
         JMenuItem gameItemDifficulty = new JMenuItem("Difficulty");
@@ -77,32 +79,31 @@ public class StartGame implements ActionListener {
 
     public void First(){
         if (lww == -1) {
-            JLabel first = new JLabel("请打开Option进行选择", JLabel.CENTER);
+            first = new JLabel("请打开Option进行选择", JLabel.CENTER);
             startJFrame.add(first, BorderLayout.CENTER);
         }
     }
 
     public static void main(String args[]) {
-        if (new FileCheck().FileChecks(path + "rankinglist/rankinglist.xml")){
+        if (new FileCheck().FileChecks(path + "rankinglist/rankinglist.xml") && new FileCheck().FileChecks(path + "music/ThomasPrime-SkyHigh.mp3")){
+            downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/config/rankinglist.xml", "rankinglist.xml","d:/Mine-Clearance/rankinglist/");
             new StartGame();
         } else {
             new StartGame();
-            JLabel first = new JLabel("正在下载配置文件，程序关闭后再次打开即可", JLabel.CENTER);
+            gameMenu.setEnabled(false);
+            startJFrame.remove(first);
+            first = new JLabel("正在下载配置文件，请耐心等待！", JLabel.CENTER);
             startJFrame.add(first, BorderLayout.CENTER);
             try{
-                downLoadFromUrl("", "rankinglist.xml","d:/Mine-Clearance/rankinglist/");
-                downLoadFromUrl("", "ThomasPrime-SkyHigh.mp3","d:/Mine-Clearance/music/");
+                downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/config/rankinglist.xml", "rankinglist.xml","d:/Mine-Clearance/rankinglist/");
+                downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/music/ThomasPrime-SkyHigh.mp3", "ThomasPrime-SkyHigh.mp3","d:/Mine-Clearance/music/");
             }catch (Exception e) {
 
             }
-            new Thread(()->{
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-            System.exit(0);
+            startJFrame.remove(first);
+            first = new JLabel("下载完成！", JLabel.CENTER);
+            startJFrame.add(first, BorderLayout.CENTER);
+            gameMenu.setEnabled(true);
         }
     }
 }
