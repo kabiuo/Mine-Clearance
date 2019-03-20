@@ -1,13 +1,16 @@
 package com.kabiuo.MineClearance;
 
+import com.kabiuo.Entity.ConfigFileseEntity;
 import com.kabiuo.Util.BGM.BackgroundGameMusic;
 import com.kabiuo.Util.FileCheck.FileCheck;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
+import java.util.List;
 
 import static com.kabiuo.Util.DownloadConfigFile.DownloadConfigFile.downLoadFromUrl;
+import static com.kabiuo.Util.LoadingXMLFiles.ReadXMLfiles.readXml;
 
 public class StartGame implements ActionListener {
     private static JFrame startJFrame = new JFrame("Mine Clearance");
@@ -85,8 +88,8 @@ public class StartGame implements ActionListener {
     }
 
     public static void main(String args[]) {
-        if (new FileCheck().FileChecks(path + "rankinglist/rankinglist.xml") && new FileCheck().FileChecks(path + "music/ThomasPrime-SkyHigh.mp3")){
-            downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/config/rankinglist.xml", "rankinglist.xml","d:/Mine-Clearance/rankinglist/");
+
+        if (new FileCheck().FileChecks(path + "mainconfig.xml")){
             new StartGame();
         } else {
             new StartGame();
@@ -95,13 +98,19 @@ public class StartGame implements ActionListener {
             first = new JLabel("正在下载配置文件，请耐心等待！", JLabel.CENTER);
             startJFrame.add(first, BorderLayout.CENTER);
             try{
-                downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/config/rankinglist.xml", "rankinglist.xml","d:/Mine-Clearance/rankinglist/");
-                downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/music/ThomasPrime-SkyHigh.mp3", "ThomasPrime-SkyHigh.mp3","d:/Mine-Clearance/music/");
+                downLoadFromUrl("", "mainconfig.xml","d:/Mine-Clearance/");
+                List<ConfigFileseEntity> configFileseEntities = (List<ConfigFileseEntity>) readXml("D:\\JavaWeb_Study\\Mine-Clearance\\mainconfig.xml");
+                if (configFileseEntities != null){
+                    for (ConfigFileseEntity cfe: configFileseEntities
+                    ) {
+                        downLoadFromUrl(cfe.getDownloadPath(), cfe.getSaveName(),cfe.getSavePath());
+                    }
+                }
             }catch (Exception e) {
 
             }
             startJFrame.remove(first);
-            first = new JLabel("下载完成！", JLabel.CENTER);
+            first = new JLabel("下载完成！请打开Option进行选择", JLabel.CENTER);
             startJFrame.add(first, BorderLayout.CENTER);
             gameMenu.setEnabled(true);
         }

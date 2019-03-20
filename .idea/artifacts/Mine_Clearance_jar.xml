@@ -1,8 +1,9 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="Mine-Clearance:jar">
+  <artifact type="jar" build-on-make="true" name="Mine-Clearance:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Mine_Clearance_jar</output-path>
     <root id="archive" name="Mine-Clearance.jar">
       <element id="module-output" name="Mine-Clearance" />
+      <element id="library" level="project" name="lib" />
     </root>
   </artifact>
 </component>

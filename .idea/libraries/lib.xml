@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jaxen-core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxen-jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jdom-2.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/saxpath.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

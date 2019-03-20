@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<downloadfileconfig>
-</downloadfileconfig>
+<rankingList>
+    <simple>
+        <rankingInfo id="1">
+            <name></name>
+            <completionTime></completionTime>
+        </rankingInfo>
+    </simple>
+    <easy>
+        <rankingInfo id="1">
+            <name></name>
+            <completionTime></completionTime>
+        </rankingInfo>
+    </easy>
+    <difficulty>
+        <rankingInfo id="1">
+            <name></name>
+            <completionTime></completionTime>
+        </rankingInfo>
+    </difficulty>
+</rankingList>
