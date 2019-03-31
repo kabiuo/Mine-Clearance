@@ -117,7 +117,8 @@ public class StartGame implements ActionListener {
 
                         downLoadFromUrl(cfe.getDownloadPath(), cfe.getSaveName(),cfe.getSavePath());
                         if ("" != cfe.getMd5() && null != cfe.getMd5()) {
-                            while(!(new Md5CaculateUtil().getMD5(new File(cfe.getSavePath())).equals(cfe.getMd5()))) {
+                            System.out.println(!((new Md5CaculateUtil().getMD5(new File(cfe.getSavePath() + cfe.getSaveName()))).equals(cfe.getMd5())));
+                            while(!((new Md5CaculateUtil().getMD5(new File(cfe.getSavePath() + cfe.getSaveName()))).equals(cfe.getMd5()))) {
                                 downLoadFromUrl(cfe.getDownloadPath(), cfe.getSaveName(),cfe.getSavePath());
                             }
                         }

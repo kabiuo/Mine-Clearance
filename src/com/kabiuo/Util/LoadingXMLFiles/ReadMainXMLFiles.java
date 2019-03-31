@@ -50,6 +50,7 @@ public class ReadMainXMLFiles {
                 configFileseEntity.setSaveName(cf.getChildText("saveName"));
                 configFileseEntity.setDownloadPath(cf.getChildText("downloadPath"));
                 configFileseEntity.setSavePath(cf.getChildText("savePath"));
+                configFileseEntity.setMd5(cf.getChildText("md5"));
 
                 configFileseEntityList.add(configFileseEntity);
             }

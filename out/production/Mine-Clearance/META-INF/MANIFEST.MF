@@ -1,5 +1,5 @@
 Manifest-Version: 6.0
 Class-Path: lib/jaxen-core.jar lib/jaxen-jdom.jar lib/jdom.jar lib/jdo
- m-2.0.6.jar lib/saxpath.jar
+ m-2.0.6.jar lib/saxpath.jar lib/commons-codec-1.12.jar
 Main-Class: com.kabiuo.MineClearance.StartGame
 
