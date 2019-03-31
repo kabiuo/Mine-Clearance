@@ -3,14 +3,16 @@ package com.kabiuo.MineClearance;
 import com.kabiuo.Entity.ConfigFileseEntity;
 import com.kabiuo.Util.BGM.BackgroundGameMusic;
 import com.kabiuo.Util.FileCheck.FileCheck;
+import com.kabiuo.Util.Md5CaculateUtil.Md5CaculateUtil;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.BorderLayout;
+import java.io.File;
 import java.util.List;
 
 import static com.kabiuo.Util.DownloadConfigFile.DownloadConfigFile.downLoadFromUrl;
-import static com.kabiuo.Util.LoadingXMLFiles.ReadXMLfiles.readXml;
+import static com.kabiuo.Util.LoadingXMLFiles.ReadMainXMLFiles.readXml;
 
 public class StartGame implements ActionListener {
     private static JFrame startJFrame = new JFrame("Mine Clearance");
@@ -98,14 +100,31 @@ public class StartGame implements ActionListener {
             first = new JLabel("正在下载配置文件，请耐心等待！", JLabel.CENTER);
             startJFrame.add(first, BorderLayout.CENTER);
             try{
-                downLoadFromUrl("", "mainconfig.xml","d:/Mine-Clearance/");
-                List<ConfigFileseEntity> configFileseEntities = (List<ConfigFileseEntity>) readXml("D:\\JavaWeb_Study\\Mine-Clearance\\mainconfig.xml");
+                downLoadFromUrl("https://github.com/kabiuo/Mine-Clearance/raw/master/config/mainconfig.xml", "mainconfig.xml","d:/Mine-Clearance/");
+                List<ConfigFileseEntity> configFileseEntities = (List<ConfigFileseEntity>) readXml("D:/Mine-Clearance/mainconfig.xml");
                 if (configFileseEntities != null){
+                    int size = configFileseEntities.size(),num = 0;
                     for (ConfigFileseEntity cfe: configFileseEntities
                     ) {
+//                        System.out.println(size+","+num);
+
+                        startJFrame.remove(first);
+                        first = new JLabel("正在下载配置文件，请耐心等待！" + "(" + num + "/" + size + ")", JLabel.CENTER);
+                        startJFrame.add(first, BorderLayout.CENTER);
+                        first.setVisible(true);
+                        startJFrame.repaint();
+                        startJFrame.validate();
+
                         downLoadFromUrl(cfe.getDownloadPath(), cfe.getSaveName(),cfe.getSavePath());
+                        if ("" != cfe.getMd5() && null != cfe.getMd5()) {
+                            while(!(new Md5CaculateUtil().getMD5(new File(cfe.getSavePath())).equals(cfe.getMd5()))) {
+                                downLoadFromUrl(cfe.getDownloadPath(), cfe.getSaveName(),cfe.getSavePath());
+                            }
+                        }
+                        num++;
                     }
                 }
+
             }catch (Exception e) {
 
             }

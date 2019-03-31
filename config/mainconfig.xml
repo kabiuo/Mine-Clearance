@@ -3,11 +3,13 @@
     <xmlFile id="1">
         <saveName>rankinglist.xml</saveName>
         <downloadPath>https://github.com/kabiuo/Mine-Clearance/raw/master/config/rankinglist.xml</downloadPath>
-        <savePath>d:/Mine-Clearance/rankinglist/rankinglist.xml</savePath>
+        <savePath>d:/Mine-Clearance/rankinglist/</savePath>
+        <md5></md5>
     </xmlFile>
     <xmlFile id="2">
         <saveName>ThomasPrime-SkyHigh.mp3</saveName>
         <downloadPath>https://github.com/kabiuo/Mine-Clearance/raw/master/music/ThomasPrime-SkyHigh.mp3</downloadPath>
-        <savePath>d:/Mine-Clearance/music/ThomasPrime-SkyHigh.mp3</savePath>
+        <savePath>d:/Mine-Clearance/music/</savePath>
+        <md5>210fc7c4a2b3e02a3aae8f10aee99b5a</md5>
     </xmlFile>
 </downloadFileConfig>

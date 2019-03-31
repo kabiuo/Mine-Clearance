@@ -5,15 +5,25 @@ public class ConfigFileseEntity {
     private String saveName;
     private String downloadPath;
     private String savePath;
+    private String md5;
 
     public ConfigFileseEntity() {
     }
 
-    public ConfigFileseEntity(String defaultValue, String saveName, String downloadPath, String savePath) {
+    public ConfigFileseEntity(String defaultValue, String saveName, String downloadPath, String savePath, String md5) {
         this.defaultValue = defaultValue;
         this.saveName = saveName;
         this.downloadPath = downloadPath;
         this.savePath = savePath;
+        this.md5 = md5;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
     }
 
     public String getDefaultValue() {

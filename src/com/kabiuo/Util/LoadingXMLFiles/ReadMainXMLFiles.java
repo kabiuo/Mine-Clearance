@@ -10,25 +10,25 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadXMLfiles {
+public class ReadMainXMLFiles {
     static List<ConfigFileseEntity> configFileseEntityList = new ArrayList<ConfigFileseEntity>();
 
-    /*
-    * test load xml file
-    * */
-//    public static void main(String[] args){
-//        List<ConfigFileseEntity> configFileseEntities = (List<ConfigFileseEntity>) readXml("D:\\JavaWeb_Study\\Mine-Clearance\\config\\mainconfig.xml");
-//
-//        System.out.println(configFileseEntities);
-//
-//        for (ConfigFileseEntity cfe: configFileseEntities
-//             ) {
-//            System.out.println(cfe.getDefaultValue());
-//            System.out.println(cfe.getSaveName());
-//            System.out.println(cfe.getDownloadPath());
-//            System.out.println(cfe.getSavePath());
-//        }
-//    }
+  /*
+  test load xml file
+
+   public static void main(String[] args){
+        List<ConfigFileseEntity> configFileseEntities = (List<ConfigFileseEntity>) readXml("D:\\JavaWeb_Study\\Mine-Clearance\\config\\m.xml");
+
+        System.out.println(configFileseEntities);
+
+        for (ConfigFileseEntity cfe: configFileseEntities
+             ) {
+            System.out.println(cfe.getDefaultValue());
+            System.out.println(cfe.getSaveName());
+            System.out.println(cfe.getDownloadPath());
+            System.out.println(cfe.getSavePath());
+        }
+    }*/
 
     public static List<ConfigFileseEntity> readXml(String path){
         ConfigFileseEntity configFileseEntity;
